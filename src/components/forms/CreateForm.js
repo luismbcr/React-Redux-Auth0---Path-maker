@@ -10,7 +10,7 @@ const CreateForm = () => {
     })
     const handleChange = (event)=> {
         const {value} = event.target;
-        const isValidForm  = (/^[0-9a-zA-Z]+$/).test(value);
+        const isValidForm  = (/^(?=.*[^\W_])[\w ]*$/).test(value) && value.length > 2;
         setFormData({name: value, isValid: isValidForm})
     }
   return (
