@@ -13,9 +13,9 @@ const PathList = props => {
         <Grid.Row>
       
       {props.paths.map(path => (
-        <Grid.Column>
+        <Grid.Column key={path.id}>
           <Card
-            key={path.id}
+            
             link
             onClick={() => props.history.push(`path/${path.id}`)}
           >
