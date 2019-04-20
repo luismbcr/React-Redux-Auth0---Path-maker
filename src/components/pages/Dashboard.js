@@ -7,6 +7,7 @@ import {
   Divider,
   Grid,
 } from "semantic-ui-react";
+import ModalCreate from "../modals/ModalCreate";
 import Auth from "../../auth/Auth";
 const auth = new Auth();
 
@@ -39,12 +40,14 @@ const Dashboard = () => {
            <Grid.Row >
               <Grid.Column width={5}>
               <Divider horizontal>Options</Divider>
+              <ModalCreate>
           <Button
             color="teal"
             content="Create Path"
             icon="add"
             labelPosition="left"
           />
+          </ModalCreate>
               </Grid.Column>
               <Grid.Column width={11}>
                 <Divider horizontal>Your Paths</Divider>
