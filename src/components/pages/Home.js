@@ -1,7 +1,9 @@
 import React from "react";
+import {withRouter} from 'react-router-dom';
 import { Button, Header, Icon, Segment } from "semantic-ui-react";
 
-const Home = () => {
+const Home = (props) => {
+  const linkCreatePath = "/dashboard";
   return (
     <>
       <Segment placeholder>
@@ -10,8 +12,8 @@ const Home = () => {
           Create your learning paths with this tool
         </Header>
         <Segment.Inline>
-          <Button primary>Create path</Button>
-          <Button>View public paths</Button>
+          <Button onClick={()=>props.history.push(linkCreatePath)} primary>Create path</Button>
+          <Button disabled>View public paths</Button>
         </Segment.Inline>
       </Segment>
       <Header as="h3" dividing>
@@ -30,4 +32,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);

@@ -11,7 +11,6 @@ class MainMenu extends Component {
 
 
   handleItemClick = (e, { name }) => {
-    // this.setState({ activeItem: name })
     this.props.focus(name);
     this.props.history.push(name)
   }
