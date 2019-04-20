@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Info = () => {
+const Info = (props) => {
   return (
     <p>
         Info Page :)

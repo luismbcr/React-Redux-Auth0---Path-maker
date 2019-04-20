@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "semantic-ui-react";
 import MainMenu from "./MainMenu";
-const HeaderComponent = props => {
+const HeaderComponent = props => { 
   return (
     <>
       <Header as="h2">

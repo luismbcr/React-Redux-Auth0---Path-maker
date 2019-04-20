@@ -1,6 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-it was added to the project Redux, Redux-thunk, React-Router 5, Redux Connected Router.
+it was added to the project Redux, Redux-thunk, React-Router 5, Redux Connected Router, auth0.
+
+## Enviroment set up
+
+After get your auth0 credentials, you need to setup an .env file with next values:
+
+```
+REACT_APP_AUTH0_DOMAIN=
+REACT_APP_AUTH0_CLIENTID=
+REACT_APP_AUTH0_CALLBACK=http://localhost:3000/callback
+REACT_APP_AUTH0_AUDIENCE=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3001
+```
 
 ## Available Scripts
 

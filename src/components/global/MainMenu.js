@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Menu, Icon } from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
-
+import {AuthContext} from "../../context/auth";
 class MainMenu extends Component {
+  static contextType = AuthContext;
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => {
@@ -12,10 +13,11 @@ class MainMenu extends Component {
 
   render() {
     const { activeItem } = this.state
-
+    const { isAutheticated, login, logout } =  this.context;
     return (
       <Menu size='small'>
-        <Menu.Item name='/' content="Home" active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item name='/' content="Home" active={activeItem === '/'} onClick={this.handleItemClick} />
+        <Menu.Item name='/dashboard' content="Dashboard" active={activeItem === '/dashboard'} onClick={this.handleItemClick} />
         <Menu.Item
           name='about'
           active={activeItem === 'about'}
@@ -24,8 +26,8 @@ class MainMenu extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item>
-            <Button color='google plus'>
-              <Icon name='google' /> Login
+            <Button color='google plus' onClick={!isAutheticated() ? (()=>login()) :  (()=>logout(this.props.history))}>
+              <Icon name='google' /> {isAutheticated() ? "Logout" :  "Login"}
             </Button>
           </Menu.Item>
         </Menu.Menu>
