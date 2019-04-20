@@ -10,15 +10,14 @@ const initialState = [{
 export default (state = initialState, action) => {
     switch (action.type) {
         case ACTIONS.ADD_PATH:
-            return {
+            return [
                 ...state,
-                paths: action.payload
-            }
+                action.payload
+            ]
         case ACTIONS.LOAD_PATHS: 
-            return {
-                ...state,
-                paths: action.payload
-            }
+            return [
+                ...state
+            ]
         default:
             return state;
     }
