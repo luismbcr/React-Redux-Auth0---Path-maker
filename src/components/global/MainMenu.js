@@ -1,28 +1,32 @@
 import React, { Component } from 'react'
 import { Button, Menu, Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {AuthContext} from "../../context/auth";
+import * as menuActions from "../../actions/menu";
+import { bindActionCreators } from 'redux';
+
 class MainMenu extends Component {
   static contextType = AuthContext;
-  state = { activeItem: 'home' }
+
 
   handleItemClick = (e, { name }) => {
-    this.setState({ activeItem: name })
+    // this.setState({ activeItem: name })
+    this.props.focus(name);
     this.props.history.push(name)
   }
-
+  componentDidMount(){
+    const {pathname} = this.props.location
+    this.props.focus(pathname);
+  }
   render() {
-    const { activeItem } = this.state
+
     const { isAutheticated, login, logout } =  this.context;
     return (
+      
       <Menu size='small'>
-        <Menu.Item name='/' content="Home" active={activeItem === '/'} onClick={this.handleItemClick} />
-        <Menu.Item name='/dashboard' content="Dashboard" active={activeItem === '/dashboard'} onClick={this.handleItemClick} />
-        <Menu.Item
-          name='about'
-          active={activeItem === 'about'}
-          onClick={this.handleItemClick}
-        />
+        <Menu.Item name='/' content="Home" active={this.props.selectedOption === '/'} onClick={this.handleItemClick} />
+        <Menu.Item name='/dashboard' content="Dashboard" active={this.props.selectedOption === '/dashboard'} onClick={this.handleItemClick} />
 
         <Menu.Menu position='right'>
           <Menu.Item>
@@ -36,4 +40,14 @@ class MainMenu extends Component {
   }
 }
 
-export default withRouter(MainMenu)
+const mapStateToProps = state => ({
+  selectedOption: state.menu.selectedOption
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+      ...menuActions,
+  }, dispatch);
+
+const connectComponent = connect(mapStateToProps,mapDispatchToProps)(MainMenu);
+
+export default withRouter(connectComponent);

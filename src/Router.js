@@ -1,8 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
 import React from "react";
-import Counter from "./components/Counter";
-import Info from "./components/Info";
+import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard"; 
 import Callback from "./components/global/Callback";
 import LoginRequired from "./components/pages/LoginRequired";
@@ -12,8 +11,7 @@ const auth = new Auth();
 const Router = (props) => {
   return (
     <Switch>
-      <Route exact path="/" component={Counter} />
-      <Route path="/about" render={props => <Info />} />
+      <Route exact path="/" component={Home} />
       <Route
         path="/dashboard"
         render={props =>
