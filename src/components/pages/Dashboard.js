@@ -8,6 +8,7 @@ import {
   Grid,
 } from "semantic-ui-react";
 import ModalCreate from "../modals/ModalCreate";
+import PathList from '../lists/PathList';
 import Auth from "../../auth/Auth";
 const auth = new Auth();
 
@@ -51,7 +52,7 @@ const Dashboard = () => {
               </Grid.Column>
               <Grid.Column width={11}>
                 <Divider horizontal>Your Paths</Divider>
-                <p>There are no paths, let's create one</p>
+                <PathList/>
               </Grid.Column>
            </Grid.Row>
          </Grid>
