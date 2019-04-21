@@ -1,8 +1,22 @@
 import * as ACTIONS from '../constants/path';
+const { REACT_APP_PATH_API }  = process.env;
 
-export const loadPaths = ()=>{
-    return {
-        type: ACTIONS.LOAD_PATHS
+
+export const getPaths = ()=>{
+    return dispatch => {
+        dispatch({
+            type: ACTIONS.GET_PATHS_REQUESTED
+        });
+        return fetch(`${REACT_APP_PATH_API}`)
+        .then(
+            response => response.json(),
+            error => console.log(error)
+        )
+        .then(
+            data=> dispatch(
+                {type: ACTIONS.GET_PATHS, payload: data }
+            )
+        )
     }
 }
 

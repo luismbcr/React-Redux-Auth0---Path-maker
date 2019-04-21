@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   //componetdidmount
   useEffect(() => {
-    auth.getProfile((profile, error) =>setDashboard({ loading: false, profile: profile }));
+    auth.getProfile((profile, error) =>setDashboard({ loading: false, profile: profile })); 
   },[]);
 
   return (
