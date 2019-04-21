@@ -11,7 +11,6 @@ const CreateForm = (props) => {
         isValid: false
     })
     const handleChangeTitle = (event)=> {
-        console.log(event.target);
         const {value} = event.target;
         const isValidForm  = (/^(?=.*[^\W_])[\w ]*$/).test(value) && value.length > 2;
         setFormData({name: value, isValid: isValidForm})
@@ -19,7 +18,6 @@ const CreateForm = (props) => {
     const handleChangeDescription = (event)=> {
       
       const {value} = event.target;
-      console.log(value);
       const isValidForm  = (/^(?=.*[^\W_])[\w ]*$/).test(formData.name) && value.length > 2;
       setFormData({name: formData.name, description: value, isValid: isValidForm})
   }
