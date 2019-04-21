@@ -16,8 +16,7 @@ const CreateForm = (props) => {
     }
     const handleSubmit = ()=>{
       props.addPath({
-        id: Math.floor(Math.random() * 1000) + 1,
-        title: formData.name
+        "title": formData.name
       })
       setFormData({name: "", isValid: false})
     }

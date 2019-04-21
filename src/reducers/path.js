@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                paths: [...state.paths, ...action.payload]
+                paths: [...action.payload]
             }
         default:
             return state;
