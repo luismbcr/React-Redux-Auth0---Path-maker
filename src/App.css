@@ -4,3 +4,7 @@ body{
 .path-page{
   margin-top: 2em;
 }
+.create-icon i{
+  position: relative;
+  top: -7px;
+} 
