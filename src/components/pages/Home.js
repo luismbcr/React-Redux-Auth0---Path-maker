@@ -12,7 +12,7 @@ const Home = (props) => {
           Create your learning paths with this tool
         </Header>
         <Segment.Inline>
-          <Button onClick={()=>props.history.push(linkCreatePath)} primary>Create path</Button>
+          <Button onClick={()=>props.history.push(linkCreatePath)} primary>My paths</Button>
           <Button disabled>View public paths</Button>
         </Segment.Inline>
       </Segment>

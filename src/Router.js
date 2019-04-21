@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import React from "react";
 import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard"; 
+import PathDetails from "./components/pages/PathDetails"; 
 import Callback from "./components/global/Callback";
 import LoginRequired from "./components/pages/LoginRequired";
 import Auth from "./auth/Auth";
@@ -17,6 +18,16 @@ const Router = (props) => {
         render={props =>
           auth.isAutheticated() ? (
             <Dashboard />
+          ) : (
+            <LoginRequired/>
+          )
+        }
+      />
+      <Route
+        path="/path/:id"
+        render={props =>
+          auth.isAutheticated() ? (
+            <PathDetails />
           ) : (
             <LoginRequired/>
           )
