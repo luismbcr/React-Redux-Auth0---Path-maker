@@ -28,3 +28,19 @@ export const addPath = payload => {
       .then(payload => dispatch({ type: ACTIONS.ADD_PATH, payload }));
   };
 };
+
+
+export const setPathDetail = payload =>{
+  return dispatch => dispatch({type: ACTIONS.SET_PATH_DETAIL, payload})
+}
+
+export const setPathDetailAsync = id => {
+  
+  return dispatch => {
+    dispatch({type: ACTIONS.GET_PATH_DETAIL_REQUESTED})
+    setPathDetail(id)
+    return fetch(`${REACT_APP_PATH_API}/${id}`)
+      .then(res => res.json())
+      .then(payload => dispatch({type: ACTIONS.SET_PATH_DETAIL, payload}))
+  }
+}

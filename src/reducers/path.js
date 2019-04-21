@@ -2,6 +2,7 @@ import * as ACTIONS from '../constants/path';
 
 const initialState = {
     paths: [],
+    pathDetail: {},
     isLoading: true
 };
 
@@ -24,6 +25,11 @@ export default (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 paths: [...action.payload]
+            }
+        case ACTIONS.SET_PATH_DETAIL:
+            return {
+                ...state,
+                pathDetail: action.payload
             }
         default:
             return state;

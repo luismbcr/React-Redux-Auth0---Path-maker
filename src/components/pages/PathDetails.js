@@ -1,79 +1,46 @@
-import React from "react";
-import { Header, List, Dropdown } from "semantic-ui-react";
-
-const status = [
-    {
-        key: 'Open',
-        text: 'Not started yet',
-        value: 'Open',
-      },
-      {
-        key: 'In progress',
-        text: 'In progress',
-        value: 'In progress',
-      },
-      {
-        key: 'Completed',
-        text: 'Completed',
-        value: 'Completed',
-      }
-]
+import React, { useEffect } from "react";
+import { Header } from "semantic-ui-react";
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import * as pathActions from "../../actions/path";
+import { withRouter } from "react-router-dom";
 const PathDetails = props => {
+  useEffect(() => {
+    const { id } = props.match.params;
+    if(props.paths.length>0){
+      const path = props.paths.filter((path)=> path.id === id);
+      props.setPathDetail(path[0])
+    }else{
+      //here needs to call API
+      props.setPathDetailAsync(id);
+    }
+  }, [])
   return (
     <div>
-      <Header as="h1">React Path</Header>
-      <List divided relaxed>
-        <List.Item>
-          <List.Content floated="right">
-          <Dropdown
-                placeholder='Select Status'
-                fluid
-                selection
-                value="In progress"
-                options={status}
-            />
-          </List.Content>
-          <List.Icon name="tasks" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header >Create first component</List.Header>
-            <List.Description >In progress</List.Description>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Content floated="right">
-          <Dropdown
-                placeholder='Select Status'
-                fluid
-                selection
-                value="Open"
-                options={status}
-            />
-          </List.Content>
-          <List.Icon name="video" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header >How to use ref?</List.Header>
-            <List.Description >Not started yet</List.Description>
-          </List.Content>
-        </List.Item>
-        <List.Item>
-          <List.Content floated="right">
-          <Dropdown
-                placeholder='Select Status'
-                fluid
-                selection
-                value="Open"
-                options={status}
-            />
-          </List.Content>
-          <List.Icon name="book" size="large" verticalAlign="middle" />
-          <List.Content>
-            <List.Header >How to use ref?</List.Header>
-            <List.Description >Not started yet</List.Description>
-          </List.Content>
-        </List.Item>
-      </List>
+      <Header as="h1">{props.details.title || 'Not found'}</Header>
+      <p>{props.details.description}</p>
     </div>
   );
 };
 
-export default PathDetails;
+const mapStateToProps = state => ({
+  paths: state.paths.paths,
+  details: state.paths.pathDetail,
+  isLoading: state.paths.isLoading
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      ...pathActions
+    },
+    dispatch
+  );
+
+
+const connectComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PathDetails);
+
+export default withRouter(connectComponent);

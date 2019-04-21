@@ -27,7 +27,7 @@ const Router = (props) => {
         path="/path/:id"
         render={props =>
           auth.isAutheticated() ? (
-            <PathDetails />
+            <PathDetails {...props} />
           ) : (
             <LoginRequired/>
           )
