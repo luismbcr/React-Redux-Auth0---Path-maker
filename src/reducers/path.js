@@ -29,6 +29,7 @@ export default (state = initialState, action) => {
         case ACTIONS.SET_PATH_DETAIL:
             return {
                 ...state,
+                isLoading: false,
                 pathDetail: action.payload
             }
         default:

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Header } from "semantic-ui-react";
+import { Header, Loader} from "semantic-ui-react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as pathActions from "../../actions/path";
@@ -17,7 +17,8 @@ const PathDetails = props => {
   }, [])
   return (
     <div>
-      <Header as="h1">{props.details.title || 'Not found'}</Header>
+      {props.isLoading && <Loader active inline="centered" />}
+      <Header as="h1">{props.details.title || (!props.isLoading && "Wrong Path")}</Header>
       <p>{props.details.description}</p>
     </div>
   );
