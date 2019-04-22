@@ -44,3 +44,21 @@ export const setPathDetailAsync = id => {
       .then(payload => dispatch({type: ACTIONS.SET_PATH_DETAIL, payload}))
   }
 }
+
+export const AddItem = (idPath, payload) => {
+  return dispatch => {
+    dispatch({
+      type: ACTIONS.ADD_ITEM_REQUESTED
+    });
+    return fetch(`${REACT_APP_PATH_API}/${idPath}`, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
+  };
+};

@@ -15,7 +15,7 @@ const PathList = props => {
     <div>
       
       {props.paths.length > 0 ? (
-        <Grid  columns='three' divided>
+        <Grid  columns='three' className="paths-list">
         <Grid.Row>
 
       {props.paths.map(path => (

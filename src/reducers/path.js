@@ -20,6 +20,13 @@ export default (state = initialState, action) => {
                 isLoading: false,
                 paths: [...state.paths, action.payload]
             }
+        case ACTIONS.UPDATE_PATH:
+        console.log('innn')
+            return {
+                ...state,
+                isLoading: false,
+                pathDetail: action.payload 
+            }
         case ACTIONS.GET_PATHS: 
             return {
                 ...state,

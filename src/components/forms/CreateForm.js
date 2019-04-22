@@ -16,7 +16,6 @@ const CreateForm = (props) => {
         setFormData({name: value, isValid: isValidForm})
     }
     const handleChangeDescription = (event)=> {
-      
       const {value} = event.target;
       const isValidForm  = (/^(?=.*[^\W_])[\w ]*$/).test(formData.name) && value.length > 2;
       setFormData({name: formData.name, description: value, isValid: isValidForm})

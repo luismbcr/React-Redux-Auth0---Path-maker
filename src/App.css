@@ -8,3 +8,6 @@ body{
   position: relative;
   top: -7px;
 } 
+.ui.paths-list .row .column{
+  margin-bottom: 1em;
+}
