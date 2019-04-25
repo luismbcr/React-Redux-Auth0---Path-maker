@@ -17,6 +17,18 @@ const PathDetails = props => {
       props.setPathDetailAsync(id);
     }
   }, [])
+  const removeItem = (idItem)=> {
+    const { id } = props.match.params;
+    const element = {...props.details};
+    const updateElement = element.items.map((item)=>{
+      if(item.text === idItem){
+        //4 is removed status
+        item.status=4;
+      }
+      return item;
+    });
+    props.removeItem(id,{"items": updateElement});
+  }
   return (
     <div>
       {props.isLoading && <Loader active inline="centered" />}
@@ -24,7 +36,7 @@ const PathDetails = props => {
       <p>{props.details.description}</p>
       <ItemForm {...props} />
       <Header as="h2">My Topics</Header>
-      <ItemList topics={props.details.items}/>
+      <ItemList topics={props.details.items} removeItem={removeItem} />
     </div>
   );
 };
