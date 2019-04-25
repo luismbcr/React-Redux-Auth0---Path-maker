@@ -11,3 +11,9 @@ body{
 .ui.paths-list .row .column{
   margin-bottom: 1em;
 }
+.progress-popup{
+  width: 200px;
+}
+.progress-popup .header{
+  margin: 10px;
+}

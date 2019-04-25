@@ -1,7 +1,7 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Grid, Card, Loader } from "semantic-ui-react";
+import { Grid, Card, Loader, Popup,Progress } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 
 import * as pathActions from "../../actions/path";
@@ -10,32 +10,45 @@ const PathList = props => {
   useEffect(() => {
     //Load path list here
     props.getPaths();
-  }, [])
+  }, []);
+  const checkProgress = (items)=> {
+    const totalTasksCompleted = items.filter((item)=> item.status !== 0);
+    const progress =  totalTasksCompleted.length / items.length
+    return <Progress percent={progress} progress />
+  }
   return (
     <div>
-      
       {props.paths.length > 0 ? (
-        <Grid  columns='three' className="paths-list">
-        <Grid.Row>
-
-      {props.paths.map(path => (
-        <Grid.Column key={path.id}>
-          <Card
             
-            link
-            onClick={() => props.history.push(`path/${path.id}`)}
-          >
-            <Card.Content>
-              <Card.Header>{path.title}</Card.Header>
-            </Card.Content>
-          </Card>
-          </Grid.Column>
-          ))}
-      
-      </Grid.Row>
+        <Grid columns="three" className="paths-list">
+          <Grid.Row>
+            {props.paths.map(path => (
+              <Grid.Column key={path.id}>
+                <Card
+                  link
+                  onClick={() => props.history.push(`path/${path.id}`)}
+                >
+                  <Popup
+                    position="top center"
+                    key={path.title}
+                    className="progress-popup"
+                    trigger={
+                      <Card.Content>
+                        <Card.Header>{path.title}</Card.Header>
+                      </Card.Content>
+                    }
+                    header={path.description}
+                    content={checkProgress(path.items)}
+                  />
+                </Card>
+              </Grid.Column>
+            ))}
+          </Grid.Row>
         </Grid>
+      ) : props.isLoading ? (
+        <Loader active inline="centered" />
       ) : (
-        props.isLoading  ? <Loader active inline='centered'/> : <p>There are no paths</p>
+        <p>There are no paths</p>
       )}
     </div>
   );
