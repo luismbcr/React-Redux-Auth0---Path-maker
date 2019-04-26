@@ -17,3 +17,9 @@ body{
 .progress-popup .header{
   margin: 10px;
 }
+.status-dropdown{
+  margin: 0 5px;
+}
+.clickable-item{
+  cursor: pointer;
+}

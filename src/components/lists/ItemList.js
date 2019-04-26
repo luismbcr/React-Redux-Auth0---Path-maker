@@ -21,12 +21,10 @@ const ItemList = props => {
         topics.map(item => {
           return (
             //check if it was removed
-            (item.status !== 4) && <List.Item key={item.text} >
+            (item.status !== 4) && <List.Item className="clickable-item" key={item.text} onClick={()=>props.updateItem(item)}  >
               <List.Content floated="right">
                 <Button.Group>
                   <Button onClick={() => props.removeItem(item.text) } color='black'>Remove</Button>
-                  <Button.Or />
-                  <Button color='yellow'>Update</Button>
                 </Button.Group>
               </List.Content>
               <List.Header>{item.text}</List.Header>

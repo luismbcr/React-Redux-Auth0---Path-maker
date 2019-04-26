@@ -29,6 +29,29 @@ const PathDetails = props => {
     });
     props.removeItem(id,{"items": updateElement});
   }
+  const updateItemStatus = (idItem) =>{
+    const { id } = props.match.params;
+    const element = {...props.details};
+    const updateElement = element.items.map((item)=>{
+      if(item.text === idItem.text){
+        let newStatus;
+        switch (item.status) {
+          default:
+          newStatus = 0
+          break;
+          case 0:
+            newStatus = 1
+            break;
+          case 1:
+            newStatus = 2
+            break;
+        }
+        item.status = newStatus;
+      }
+      return item;
+    });
+    props.updateItem(id, {"items": updateElement});
+  }
   return (
     <div>
       {props.isLoading && <Loader active inline="centered" />}
@@ -36,7 +59,7 @@ const PathDetails = props => {
       <p>{props.details.description}</p>
       <ItemForm {...props} />
       <Header as="h2">My Topics</Header>
-      <ItemList topics={props.details.items} removeItem={removeItem} />
+      <ItemList topics={props.details.items} removeItem={removeItem} updateItem={updateItemStatus} />
     </div>
   );
 };

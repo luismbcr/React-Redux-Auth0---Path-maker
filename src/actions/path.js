@@ -77,3 +77,18 @@ export const removeItem = (idPath, payload) => {
       .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
   };
 };
+
+export const updateItem = (idPath, payload) => {
+  return dispatch => {
+    return fetch(`${REACT_APP_PATH_API}/${idPath}`, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
+  };
+};
