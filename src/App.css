@@ -22,4 +22,5 @@ body{
 }
 .clickable-item{
   cursor: pointer;
+  display: inline-block;
 }
