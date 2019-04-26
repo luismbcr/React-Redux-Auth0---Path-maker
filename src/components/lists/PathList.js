@@ -12,9 +12,11 @@ const PathList = props => {
     props.getPaths();
   }, []);
   const checkProgress = (items)=> {
-    const totalTasksCompleted = items.filter((item)=> item.status !== 0);
-    const progress =  totalTasksCompleted.length / items.length
+    const totalTasksCompleted = items.filter((item)=> ( item.status !== 0 && item.status !== 4 ));
+    const totalItemsNotDeleted = items.filter((item)=> ( item.status !== 4 ));
+    const progress =  (totalTasksCompleted.length / totalItemsNotDeleted.length) *100;
     return <Progress percent={progress} progress />
+   
   }
   return (
     <div>
