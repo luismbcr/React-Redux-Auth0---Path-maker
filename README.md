@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 it was added to the project Redux, Redux-thunk, React-Router 5, Redux Connected Router, auth0.
 
+## Demo
+
+https://priceless-kepler-de0c14.netlify.com/
+
 ## Enviroment set up
 
 After get your auth0 credentials, you need to setup an .env file with next values:
