@@ -56,7 +56,7 @@ export default class Auth {
     localStorage.removeItem("scopes");
     this.auth0.logout({
         clientID: process.env.REACT_APP_AUTH0_CLIENTID,
-        returnTo: "http://localhost:3000"
+        returnTo: process.env.REACT_APP_MAIN_APP
     });
   };
   getAccessToken = () =>{
