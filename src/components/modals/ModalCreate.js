@@ -1,12 +1,16 @@
 import React from "react";
 import { Header, Modal } from "semantic-ui-react";
 import CreateForm from "../forms/CreateForm";
-const ModalCreate = props => {
+const ModalCreate = ({children, popupOpen, handlePopup})=> {
   return (
-    <Modal trigger={props.children} closeIcon centered={false}>
+    <Modal trigger={children}
+           onClose={handlePopup}
+           closeIcon 
+           open={popupOpen}
+           centered={false}>
       <Header icon="add" content="Create a path" />
       <Modal.Content>
-        <CreateForm/>
+        <CreateForm handlePopup={handlePopup} />
       </Modal.Content>
     </Modal>
   );

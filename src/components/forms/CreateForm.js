@@ -25,7 +25,8 @@ const CreateForm = (props) => {
         "title": formData.name,
         "description": formData.description
       })
-      setFormData({name: "",description:"", isValid: false})
+      setFormData({name: "",description:"", isValid: false});
+      props.handlePopup();
     }
 
     return (

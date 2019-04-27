@@ -12,17 +12,24 @@ import PathList from '../lists/PathList';
 import Auth from "../../auth/Auth";
 const auth = new Auth();
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [dashboard, setDashboard] = useState({
     loading: true,
+    popupOpen: false,
     profile: {}
   });
 
   //componetdidmount
   useEffect(() => {
-    auth.getProfile((profile, error) =>setDashboard({ loading: false, profile: profile })); 
+    auth.getProfile((profile, error) =>setDashboard({...dashboard, loading: false, profile: profile })); 
   },[]);
-
+  const handlePopup = () =>{
+    setDashboard((laststate)=>{
+      return {
+        popupOpen: !laststate.popupOpen,
+      }
+    })
+  }
   return (
     <div>
       {dashboard.loading ? (
@@ -41,9 +48,10 @@ const Dashboard = () => {
            <Grid.Row >
               <Grid.Column width={5}>
               <Divider horizontal>Options</Divider>
-              <ModalCreate>
+          <ModalCreate  popupOpen={dashboard.popupOpen} handlePopup={handlePopup}>
           <Button
             color="teal"
+            onClick={handlePopup}
             content="Create Path"
             icon="add"
             labelPosition="left"
