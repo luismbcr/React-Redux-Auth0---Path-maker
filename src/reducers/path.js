@@ -20,6 +20,11 @@ export default (state = initialState, action) => {
                 isLoading: false,
                 paths: [...state.paths, action.payload]
             }
+        case ACTIONS.REMOVE_PATH:
+            return {
+                ...state,
+                paths: action.payload
+            }
         case ACTIONS.UPDATE_PATH:
             return {
                 ...state,

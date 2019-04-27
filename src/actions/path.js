@@ -29,6 +29,16 @@ export const addPath = payload => {
   };
 };
 
+export const removePath = (id, paths) => {
+  return dispatch => {
+    return fetch(`${REACT_APP_PATH_API}/${id}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then(payload => dispatch({ type: ACTIONS.REMOVE_PATH, payload: paths }));
+  };
+};
+
 
 export const setPathDetail = payload =>{
   return dispatch => dispatch({type: ACTIONS.SET_PATH_DETAIL, payload})

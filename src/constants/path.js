@@ -1,5 +1,6 @@
 export const ADD_PATH = 'ADD_PATH';
 export const GET_PATHS = 'GET_PATHS';
+export const REMOVE_PATH = 'REMOVE_PATH';
 export const GET_PATHS_REQUESTED = 'GET_PATHS_REQUESTED';
 export const ADD_PATH_REQUESTED = 'ADD_PATH_REQUESTED';
 

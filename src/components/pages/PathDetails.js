@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Header, Loader} from "semantic-ui-react";
+import { Header, Loader, Button} from "semantic-ui-react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as pathActions from "../../actions/path";
@@ -52,10 +52,19 @@ const PathDetails = props => {
     });
     props.updateItem(id, {"items": updateElement});
   }
+  const removePath = ()=>{
+    const { id } = props.match.params;
+    const paths = props.paths.filter((path)=> path.id !== id);
+    console.log(paths)
+     props.removePath(id, paths);
+     props.history.push('/dashboard');
+
+  }
   return (
     <div>
       {props.isLoading && <Loader active inline="centered" />}
       <Header as="h1">{props.details.title || (!props.isLoading && "Wrong Path")}</Header>
+      <Button onClick={removePath} floated="right" icon='trash' />
       <p>{props.details.description}</p>
       <ItemForm {...props} />
       <Header as="h2">My Topics</Header>
