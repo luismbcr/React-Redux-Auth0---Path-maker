@@ -2,8 +2,6 @@ import * as ACTIONS from "../constants/path";
 import Auth from '../auth/Auth';
 const { REACT_APP_PATH_API } = process.env;
 const auth = new Auth();
-const headers = new Headers({Accept: "application/json",Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"});
-
 export const getPaths = () => {
   return dispatch => {
     dispatch({
@@ -24,7 +22,7 @@ export const addPath = payload => {
     return fetch(`${REACT_APP_PATH_API}`, {
       method: "POST",
       body: JSON.stringify(payload),
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({ type: ACTIONS.ADD_PATH, payload }));
@@ -35,7 +33,7 @@ export const removePath = (id, paths) => {
   return dispatch => {
     return fetch(`${REACT_APP_PATH_API}/?_id=${id}`, {
       method: "DELETE",
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({ type: ACTIONS.REMOVE_PATH, payload: paths }));
@@ -53,7 +51,7 @@ export const setPathDetailAsync = id => {
     dispatch({type: ACTIONS.GET_PATH_DETAIL_REQUESTED})
     setPathDetail(id)
     return fetch(`${REACT_APP_PATH_API}/?_id=${id}`,{
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({type: ACTIONS.SET_PATH_DETAIL, payload}))
@@ -68,7 +66,7 @@ export const AddItem = (idPath, payload) => {
     return fetch(`${REACT_APP_PATH_API}/?_id=${idPath}`, {
       method: "PUT",
       body: JSON.stringify(payload),
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
@@ -80,7 +78,7 @@ export const removeItem = (idPath, payload) => {
     return fetch(`${REACT_APP_PATH_API}/?_id=${idPath}`, {
       method: "PUT",
       body: JSON.stringify(payload),
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
@@ -92,7 +90,7 @@ export const updateItem = (idPath, payload) => {
     return fetch(`${REACT_APP_PATH_API}/?_id=${idPath}`, {
       method: "PUT",
       body: JSON.stringify(payload),
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(res => res.json())
       .then(payload => dispatch({ type: ACTIONS.UPDATE_PATH, payload }));
