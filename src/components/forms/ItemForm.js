@@ -13,7 +13,7 @@ const ItemForm = (props) => {
   };
   const handleSubmit = () => {
     const { id } = props.match.params;
-    props.AddItem(id,{"items": [...props.details.items, {
+    props.AddItem(id,{...props.details, "items": [...props.details.items, {
       "text": formData.title,
       "status": 0
     }]});

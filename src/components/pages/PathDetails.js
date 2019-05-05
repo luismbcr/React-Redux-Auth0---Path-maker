@@ -10,7 +10,7 @@ const PathDetails = props => {
   useEffect(() => {
     const { id } = props.match.params;
     if(props.paths.length>0){
-      const path = props.paths.filter((path)=> path.id === id);
+      const path = props.paths.filter((path)=> path._id === id);
       props.setPathDetail(path[0])
     }else{
       //here needs to call API
@@ -20,6 +20,7 @@ const PathDetails = props => {
   const removeItem = (idItem)=> {
     const { id } = props.match.params;
     const element = {...props.details};
+    
     const updateElement = element.items.map((item)=>{
       if(item.text === idItem){
         //4 is removed status
@@ -27,7 +28,7 @@ const PathDetails = props => {
       }
       return item;
     });
-    props.removeItem(id,{"items": updateElement});
+    props.removeItem(id,{...element,updateElement}); 
   }
   const updateItemStatus = (idItem) =>{
     const { id } = props.match.params;
@@ -50,12 +51,11 @@ const PathDetails = props => {
       }
       return item;
     });
-    props.updateItem(id, {"items": updateElement});
+    props.updateItem(id, {...element, "items": updateElement});
   }
   const removePath = ()=>{
     const { id } = props.match.params;
-    const paths = props.paths.filter((path)=> path.id !== id);
-    console.log(paths)
+    const paths = props.paths.filter((path)=> path._id !== id);
      props.removePath(id, paths);
      props.history.push('/dashboard');
 

@@ -29,7 +29,6 @@ export default class Auth {
     });
   };
   setSession = authResult => {
-    console.log(authResult);
     //swet the time that the access token will expire
     const expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -67,6 +66,13 @@ export default class Auth {
        return accessToken;
    }
   }
+
+  getIdToken = () =>{
+    const idToken = localStorage.getItem("id_token");
+    if(idToken){
+        return idToken;
+    }
+   }
 
   getProfile = cb => {
       if(this.userProfile) return cb(this.userProfile);
