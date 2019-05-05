@@ -28,7 +28,7 @@ const PathDetails = props => {
       }
       return item;
     });
-    props.removeItem(id,updateElement);
+    props.removeItem(id,{...element,updateElement}); 
   }
   const updateItemStatus = (idItem) =>{
     const { id } = props.match.params;
@@ -51,7 +51,7 @@ const PathDetails = props => {
       }
       return item;
     });
-    props.updateItem(id, {"items": updateElement});
+    props.updateItem(id, {...element, "items": updateElement});
   }
   const removePath = ()=>{
     const { id } = props.match.params;

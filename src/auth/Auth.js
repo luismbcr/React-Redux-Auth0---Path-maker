@@ -69,9 +69,7 @@ export default class Auth {
 
   getIdToken = () =>{
     const idToken = localStorage.getItem("id_token");
-    if(!idToken){
-        throw new Error("No ID token found.");
-    }else{
+    if(idToken){
         return idToken;
     }
    }
