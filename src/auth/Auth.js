@@ -68,6 +68,15 @@ export default class Auth {
    }
   }
 
+  getIdToken = () =>{
+    const idToken = localStorage.getItem("id_token");
+    if(!idToken){
+        throw new Error("No ID token found.");
+    }else{
+        return idToken;
+    }
+   }
+
   getProfile = cb => {
       if(this.userProfile) return cb(this.userProfile);
       this.auth0.client.userInfo(this.getAccessToken(), (err,profile)=>{

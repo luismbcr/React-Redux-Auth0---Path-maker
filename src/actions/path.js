@@ -1,12 +1,17 @@
 import * as ACTIONS from "../constants/path";
+import Auth from '../auth/Auth';
 const { REACT_APP_PATH_API } = process.env;
+const auth = new Auth();
+const headers = new Headers({Authorization: `Bearer ${auth.getIdToken()}`});
 
 export const getPaths = () => {
   return dispatch => {
     dispatch({
       type: ACTIONS.GET_PATHS_REQUESTED
     });
-    return fetch(`${REACT_APP_PATH_API}`)
+    return fetch(`${REACT_APP_PATH_API}`,{
+      headers
+    })
       .then(response => response.json(), error => console.log(error))
       .then(payload => dispatch({ type: ACTIONS.GET_PATHS, payload }));
   };

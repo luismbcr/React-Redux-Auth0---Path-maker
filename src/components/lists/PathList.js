@@ -25,10 +25,10 @@ const PathList = props => {
         <Grid columns="three" className="paths-list">
           <Grid.Row>
             {props.paths.map(path => (
-              <Grid.Column key={path.id}>
+              <Grid.Column key={path._id}>
                 <Card
                   link
-                  onClick={() => props.history.push(`path/${path.id}`)}
+                  onClick={() => props.history.push(`path/${path._id}`)}
                 >
                   <Popup
                     position="top center"
