@@ -10,7 +10,7 @@ export const getPaths = () => {
       type: ACTIONS.GET_PATHS_REQUESTED
     });
     return fetch(`${REACT_APP_PATH_API}`,{
-      headers
+      headers: {Authorization: `Bearer ${auth.getIdToken()}`, "Content-Type": "application/json"}
     })
       .then(response => response.json(), error => console.log(error))
       .then(payload => dispatch({ type: ACTIONS.GET_PATHS, payload }));
